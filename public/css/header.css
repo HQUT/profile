@@ -1,0 +1,127 @@
+/* ===== Header position / sticky on scroll up ===== */
+header {
+  z-index: 10;
+  position: relative;
+  top: 0;
+}
+
+.showHeaderOnTop {
+  box-shadow: 0px 8px 56px rgba(15, 80, 100, 0.16);
+  top: 0;
+  position: sticky;
+}
+
+/* ===== Nav länkar & brand ===== */
+/* Brand och annan nav-text kan vara neutral */
+.navbar-brand {
+  color: var(--primary-color) !important;
+  opacity: 0.95;
+}
+
+/* Länkar ska använda accent-länkfärgen (rosa) – detta var tidigare var(--text-color) */
+header .navbar .navbar-nav a,
+header .navbar .nav-link {
+  color: var(--text-link-color) !important;
+  transition: none !important;
+}
+
+.navbar .nav-link:hover,
+li > .dropdown-toggle:focus {
+  color: var(--primary-color) !important;
+}
+
+.navbar-text {
+  font-size: 16px !important;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
+.nav-link.nav-link-sep:after {
+  content: "|";
+  color: var(--text-color) !important;
+}
+
+/* ===== Theme toggle ===== */
+#theme-toggle {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* ===== Toggler (mobil) ===== */
+.navbar-toggler {
+  border: none;
+  outline: none;
+  color: var(--text-color);
+}
+.navbar-toggler svg {
+  fill: currentColor;
+  color: var(--text-color);
+}
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 .05em;
+}
+
+/* ===== Dropdown ===== */
+/* Använd navbar-bakgrunden (inte page background) */
+.dropdown-menu {
+  overflow: auto;
+  background-color: var(--navbar-bg) !important;
+  border-color: var(--text-secondary-color) !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: var(--secondary-color) !important;
+}
+
+.dropdown-divider {
+  border-top: 1px solid var(--lt-color-border-dark);
+}
+
+/* ===== Search ===== */
+#search {
+  border-radius: 1rem !important;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-color: var(--background-color) !important;
+  transition: none;
+}
+#search:focus {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#search-content {
+  -ms-scroll-chaining: none;
+  scrollbar-width: none;
+  display: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+  width: 10%;
+  max-height: 350px;
+  background-color: var(--secondary-color) !important;
+  position: absolute;
+  overflow: scroll;
+}
+#search-content::-webkit-scrollbar { display: none; }
+
+#search-results > .card {
+  background-color: transparent !important;
+  border: none;
+  margin-bottom: 10px;
+}
+#search-results > .card :hover {
+  border-radius: 1rem !important;
+  background-color: var(--background-color) !important;
+  transition: .2s;
+}
+#search-results .card a {
+  opacity: 0.9;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-color) !important;
+}
+#search-results .card a:hover {
+  color: var(--primary-color) !important;
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="white"/>
+  <text x="45%" y="55%" font-size="220" text-anchor="middle" 
+        font-family="Montserrat, Arial, sans-serif" font-weight="600" fill="#000000">
+    H
+  </text>
+  <text x="65%" y="55%" font-size="220" text-anchor="middle" 
+        font-family="Montserrat, Arial, sans-serif" font-weight="600" fill="#E91E63">
+    Q
+  </text>
+</svg>
