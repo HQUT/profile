@@ -241,3 +241,12 @@ body.light a {
 body.light a:hover {
   color: color-mix(in srgb, var(--text-link-color) 85%, #000 15%) !important;
 }
+
+/* GitHub-ikon: synlig i båda teman */
+#footer-socialNetworks-github-svg-path{
+  fill: var(--text-color) !important;   /* eller #111827 */
+}
+body.dark #footer-socialNetworks-github-svg-path{
+  fill: #fff !important;
+}
+
