@@ -28,7 +28,7 @@
 
 
 
-<meta property="og:url" content="http://localhost:1313/tags/">
+<meta property="og:url" content="//localhost:1313/tags/">
   <meta property="og:site_name" content="Hiba Qutbuddin Habib">
   <meta property="og:title" content="Tags">
   <meta property="og:description" content="M.Sc. in Data Science with a passion for AI, Machine Learning, and Intelligent Systems">
@@ -108,6 +108,11 @@
 
   
   
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
+
+  
 
   <title>
 Tags | Hiba Qutbuddin Habib
@@ -121,17 +126,10 @@ Tags | Hiba Qutbuddin Habib
 <script>
   let localStorageValue = localStorage.getItem("pref-theme");
   let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
   switch (localStorageValue) {
-    case "dark":
-      document.body.classList.add('dark');
-      break;
-    case "light":
-      document.body.classList.remove('dark');
-      break;
-    default:
-      if (mediaQuery) document.body.classList.add('dark');
-      break;
+    case "dark":  document.body.classList.add('dark'); break;
+    case "light": document.body.classList.remove('dark'); break;
+    default: if (mediaQuery) document.body.classList.add('dark'); break;
   }
 </script>
 
@@ -139,8 +137,7 @@ Tags | Hiba Qutbuddin Habib
 <header id="profileHeader">
   <nav class="pt-3 navbar navbar-expand-lg animate">
     <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
-      
-      <a class="navbar-brand primary-font text-wrap" href="/">
+      <a class="navbar-brand primary-font text-wrap" href="//localhost:1313/">
         
           <img src="/fav.svg" width="30" height="30"
                class="d-inline-block align-top" alt="logo">
@@ -150,88 +147,53 @@ Tags | Hiba Qutbuddin Habib
 
       
 
-      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
               aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+        <svg aria-hidden="true" height="24" viewBox="0 0 16 16" width="24">
           <path fill-rule="evenodd"
-                d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
           </path>
         </svg>
       </button>
 
-      
       <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
         <ul class="navbar-nav ms-auto text-center">
-
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#about" aria-label="about">
-              About Me
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#about"> About Me </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#experience" aria-label="experience">
-              Experience
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#experience"> Experience </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#education" aria-label="education">
-              Education
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#education"> Education </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#projects" aria-label="projects">
-              Projects
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#projects"> Projects </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            
-            <a class="nav-link" href="/#skills" aria-label="skills">
-              Skills
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#skills"> Skills </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#contact" aria-label="contact">
-              Contact
-            </a>
-          </li>
-          
-
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#contact"> Contact </a></li>
           
 
           
 
           
           <li class="nav-item navbar-text">
-            
             <div class="text-center">
               <button id="theme-toggle" aria-label="Toggle theme">
-                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="5"></circle>
                   <line x1="12" y1="1" x2="12" y2="3"></line>
                   <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -246,7 +208,6 @@ Tags | Hiba Qutbuddin Habib
             </div>
           </li>
           
-
         </ul>
       </div>
     </div>
@@ -259,26 +220,23 @@ Tags | Hiba Qutbuddin Habib
     const header = document.getElementById("profileHeader");
     if (!header) return;
 
-    
-    header.classList.add("showHeaderOnTop");
-
+    header.classList.add("showHeaderOnTop");       
     let prevY = window.pageYOffset;
-    const THRESHOLD = 4;       
 
     window.addEventListener("scroll", () => {
       const y = window.pageYOffset;
 
-      if (y === 0) {
-        
+      if (y === 0) {                                
         header.classList.add("showHeaderOnTop");
-      } else if (y > prevY + THRESHOLD) {
-        
-        header.classList.remove("showHeaderOnTop");
-      } else if (y < prevY - THRESHOLD) {
-        
-        header.classList.add("showHeaderOnTop");
+        prevY = y;
+        return;
       }
 
+      if (y > prevY + 2) {                          
+        header.classList.remove("showHeaderOnTop");
+      } else if (y < prevY - 2) {                   
+        header.classList.add("showHeaderOnTop");
+      }
       prevY = y;
     }, { passive: true });
 
@@ -290,7 +248,6 @@ Tags | Hiba Qutbuddin Habib
         header.classList.add("showHeaderOnTop");
         clearTimeout(hideTimer);
         hideTimer = setTimeout(() => {
-          
           if (!header.matches(":hover") && window.pageYOffset > 0) {
             header.classList.remove("showHeaderOnTop");
           }
@@ -299,7 +256,6 @@ Tags | Hiba Qutbuddin Habib
     });
   })();
 </script>
-
 <div id="content">
 <div class="container pt-5" id="list-page">
     <h2 class="text-center pb-2">Tags</h2>
@@ -365,19 +321,19 @@ Tags | Hiba Qutbuddin Habib
 
     
 </div><div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-md-4 text-center">
-      
-        <div class="pb-2">
-          <a href="http://localhost:1313/" title="Hiba Qutbuddin Habib">
-            <img alt="Footer logo" src="/fav.svg"
-                 height="40px" width="40px">
-          </a>
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="//localhost:1313/" title="Hiba Qutbuddin Habib">
+                        <img alt="Footer logo" src="/fav.svg"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2025  All rights reserved
         </div>
-      
-      &copy; 2025  All rights reserved
     </div>
-  </div>
 </div>
 </footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
 <script>

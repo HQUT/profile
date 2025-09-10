@@ -29,7 +29,7 @@
 
 
 
-<meta property="og:url" content="http://localhost:1313/">
+<meta property="og:url" content="//localhost:1313/">
   <meta property="og:site_name" content="Hiba Qutbuddin Habib">
   <meta property="og:title" content="Hiba Qutbuddin Habib">
   <meta property="og:description" content="M.Sc. in Data Science with a passion for AI, Machine Learning, and Intelligent Systems">
@@ -113,6 +113,11 @@
 
   
   
+  
+    <link rel="stylesheet" href="/css/custom.css">
+  
+
+  
 
   <title>
 Hiba Qutbuddin Habib
@@ -126,17 +131,10 @@ Hiba Qutbuddin Habib
 <script>
   let localStorageValue = localStorage.getItem("pref-theme");
   let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
   switch (localStorageValue) {
-    case "dark":
-      document.body.classList.add('dark');
-      break;
-    case "light":
-      document.body.classList.remove('dark');
-      break;
-    default:
-      if (mediaQuery) document.body.classList.add('dark');
-      break;
+    case "dark":  document.body.classList.add('dark'); break;
+    case "light": document.body.classList.remove('dark'); break;
+    default: if (mediaQuery) document.body.classList.add('dark'); break;
   }
 </script>
 
@@ -144,8 +142,7 @@ Hiba Qutbuddin Habib
 <header id="profileHeader">
   <nav class="pt-3 navbar navbar-expand-lg animate">
     <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
-      
-      <a class="navbar-brand primary-font text-wrap" href="/">
+      <a class="navbar-brand primary-font text-wrap" href="//localhost:1313/">
         
           <img src="/fav.svg" width="30" height="30"
                class="d-inline-block align-top" alt="logo">
@@ -155,88 +152,53 @@ Hiba Qutbuddin Habib
 
       
 
-      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
               aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+        <svg aria-hidden="true" height="24" viewBox="0 0 16 16" width="24">
           <path fill-rule="evenodd"
-                d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
           </path>
         </svg>
       </button>
 
-      
       <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
         <ul class="navbar-nav ms-auto text-center">
-
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#about" aria-label="about">
-              About Me
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#about"> About Me </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#experience" aria-label="experience">
-              Experience
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#experience"> Experience </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#education" aria-label="education">
-              Education
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#education"> Education </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#projects" aria-label="projects">
-              Projects
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#projects"> Projects </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            
-            <a class="nav-link" href="/#skills" aria-label="skills">
-              Skills
-            </a>
-          </li>
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#skills"> Skills </a></li>
           
 
           
-          <li class="nav-item navbar-text">
-            <a class="nav-link" href="/#contact" aria-label="contact">
-              Contact
-            </a>
-          </li>
-          
-
+          <li class="nav-item navbar-text"><a class="nav-link" href="//localhost:1313/#contact"> Contact </a></li>
           
 
           
 
           
           <li class="nav-item navbar-text">
-            
             <div class="text-center">
               <button id="theme-toggle" aria-label="Toggle theme">
-                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="5"></circle>
                   <line x1="12" y1="1" x2="12" y2="3"></line>
                   <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -251,7 +213,6 @@ Hiba Qutbuddin Habib
             </div>
           </li>
           
-
         </ul>
       </div>
     </div>
@@ -264,26 +225,23 @@ Hiba Qutbuddin Habib
     const header = document.getElementById("profileHeader");
     if (!header) return;
 
-    
-    header.classList.add("showHeaderOnTop");
-
+    header.classList.add("showHeaderOnTop");       
     let prevY = window.pageYOffset;
-    const THRESHOLD = 4;       
 
     window.addEventListener("scroll", () => {
       const y = window.pageYOffset;
 
-      if (y === 0) {
-        
+      if (y === 0) {                                
         header.classList.add("showHeaderOnTop");
-      } else if (y > prevY + THRESHOLD) {
-        
-        header.classList.remove("showHeaderOnTop");
-      } else if (y < prevY - THRESHOLD) {
-        
-        header.classList.add("showHeaderOnTop");
+        prevY = y;
+        return;
       }
 
+      if (y > prevY + 2) {                          
+        header.classList.remove("showHeaderOnTop");
+      } else if (y < prevY - 2) {                   
+        header.classList.add("showHeaderOnTop");
+      }
       prevY = y;
     }, { passive: true });
 
@@ -295,7 +253,6 @@ Hiba Qutbuddin Habib
         header.classList.add("showHeaderOnTop");
         clearTimeout(hideTimer);
         hideTimer = setTimeout(() => {
-          
           if (!header.matches(":hover") && window.pageYOffset > 0) {
             header.classList.remove("showHeaderOnTop");
           }
@@ -304,7 +261,6 @@ Hiba Qutbuddin Habib
     });
   })();
 </script>
-
 <div id="content">
 <section id="hero" class="py-5 align-middle">
     <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
@@ -1745,32 +1701,29 @@ Hiba Qutbuddin Habib
             <h5 class="card-title mb-2"><i class="fas fa-code me-2"></i>Programming Languages</h5>
 
             
-            
               <div class="d-flex flex-wrap gap-2 mb-2">
                 
-                  <span class="badge rounded-pill">Python</span>
+                  <span class="badge">Python</span>
                 
-                  <span class="badge rounded-pill">Java</span>
+                  <span class="badge">Java</span>
                 
-                  <span class="badge rounded-pill">C/C&#43;&#43;</span>
+                  <span class="badge">C/C&#43;&#43;</span>
                 
-                  <span class="badge rounded-pill">JavaScript</span>
+                  <span class="badge">JavaScript</span>
                 
-                  <span class="badge rounded-pill">HTML/CSS</span>
+                  <span class="badge">HTML/CSS</span>
                 
-                  <span class="badge rounded-pill">R</span>
+                  <span class="badge">R</span>
                 
-                  <span class="badge rounded-pill">Prolog</span>
+                  <span class="badge">Prolog</span>
                 
-                  <span class="badge rounded-pill">PDDL</span>
+                  <span class="badge">PDDL</span>
                 
               </div>
             
 
             
-            
 
-            
             
           </div>
         </div>
@@ -1780,28 +1733,25 @@ Hiba Qutbuddin Habib
             <h5 class="card-title mb-2"><i class="fas fa-brain me-2"></i>Data Science & Machine Learning</h5>
 
             
-            
               <div class="d-flex flex-wrap gap-2 mb-2">
                 
-                  <span class="badge rounded-pill">PyTorch</span>
+                  <span class="badge">PyTorch</span>
                 
-                  <span class="badge rounded-pill">TensorFlow</span>
+                  <span class="badge">TensorFlow</span>
                 
-                  <span class="badge rounded-pill">Scikit-learn</span>
+                  <span class="badge">Scikit-learn</span>
                 
-                  <span class="badge rounded-pill">Spark (PySpark)</span>
+                  <span class="badge">Spark (PySpark)</span>
                 
-                  <span class="badge rounded-pill">Pandas</span>
+                  <span class="badge">Pandas</span>
                 
-                  <span class="badge rounded-pill">NumPy</span>
+                  <span class="badge">NumPy</span>
                 
               </div>
             
 
             
-            
 
-            
             
           </div>
         </div>
@@ -1811,26 +1761,23 @@ Hiba Qutbuddin Habib
             <h5 class="card-title mb-2"><i class="fas fa-wrench me-2"></i>Frameworks & Tools</h5>
 
             
-            
               <div class="d-flex flex-wrap gap-2 mb-2">
                 
-                  <span class="badge rounded-pill">FastAPI</span>
+                  <span class="badge">FastAPI</span>
                 
-                  <span class="badge rounded-pill">React</span>
+                  <span class="badge">React</span>
                 
-                  <span class="badge rounded-pill">Docker</span>
+                  <span class="badge">Docker</span>
                 
-                  <span class="badge rounded-pill">Git</span>
+                  <span class="badge">Git</span>
                 
-                  <span class="badge rounded-pill">Firebase</span>
+                  <span class="badge">Firebase</span>
                 
               </div>
             
 
             
-            
 
-            
             
           </div>
         </div>
@@ -1840,20 +1787,17 @@ Hiba Qutbuddin Habib
             <h5 class="card-title mb-2"><i class="fas fa-database me-2"></i>Data Platforms & Big Data</h5>
 
             
-            
               <div class="d-flex flex-wrap gap-2 mb-2">
                 
-                  <span class="badge rounded-pill">HDFS</span>
+                  <span class="badge">HDFS</span>
                 
-                  <span class="badge rounded-pill">Cassandra</span>
+                  <span class="badge">Cassandra</span>
                 
               </div>
             
 
             
-            
 
-            
             
           </div>
         </div>
@@ -1863,26 +1807,23 @@ Hiba Qutbuddin Habib
             <h5 class="card-title mb-2"><i class="fas fa-robot me-2"></i>Robotics & Embedded</h5>
 
             
-            
               <div class="d-flex flex-wrap gap-2 mb-2">
                 
-                  <span class="badge rounded-pill">Furhat HRI</span>
+                  <span class="badge">Furhat HRI</span>
                 
-                  <span class="badge rounded-pill">ROS</span>
+                  <span class="badge">ROS</span>
                 
-                  <span class="badge rounded-pill">Gazebo</span>
+                  <span class="badge">Gazebo</span>
                 
-                  <span class="badge rounded-pill">Embedded Systems</span>
+                  <span class="badge">Embedded Systems</span>
                 
-                  <span class="badge rounded-pill">MIPS Assembly</span>
+                  <span class="badge">MIPS Assembly</span>
                 
               </div>
             
 
             
-            
 
-            
             
           </div>
         </div>
@@ -1892,52 +1833,43 @@ Hiba Qutbuddin Habib
             <h5 class="card-title mb-2"><i class="fas fa-language me-2"></i>Languages</h5>
 
             
-            
 
-            
             
               <ul class="list-unstyled mb-0">
                 
                   <li class="mb-1">
                     <span class="fw-semibold">Swedish</span>
                     <span class="badge level-badge ms-2">Fluent</span>
-
                   </li>
                 
                   <li class="mb-1">
                     <span class="fw-semibold">English</span>
                     <span class="badge level-badge ms-2">Fluent</span>
-
                   </li>
                 
                   <li class="mb-1">
                     <span class="fw-semibold">Arabic</span>
                     <span class="badge level-badge ms-2">Native</span>
-
                   </li>
                 
                   <li class="mb-1">
                     <span class="fw-semibold">Kurdish</span>
                     <span class="badge level-badge ms-2">Conversational</span>
-
                   </li>
                 
                   <li class="mb-1">
                     <span class="fw-semibold">Turkish</span>
                     <span class="badge level-badge ms-2">Conversational</span>
-
                   </li>
                 
                   <li class="mb-1">
                     <span class="fw-semibold">French</span>
                     <span class="badge level-badge ms-2">Conversational</span>
-
                   </li>
                 
               </ul>
             
 
-            
             
           </div>
         </div>
@@ -2041,19 +1973,19 @@ Hiba Qutbuddin Habib
 
     
 </div><div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-md-4 text-center">
-      
-        <div class="pb-2">
-          <a href="http://localhost:1313/" title="Hiba Qutbuddin Habib">
-            <img alt="Footer logo" src="/fav.svg"
-                 height="40px" width="40px">
-          </a>
+    <div class="row justify-content-center">
+        <div class="col-md-4 text-center">
+            
+                <div class="pb-2">
+                    <a href="//localhost:1313/" title="Hiba Qutbuddin Habib">
+                        <img alt="Footer logo" src="/fav.svg"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
+            &copy; 2025  All rights reserved
         </div>
-      
-      &copy; 2025  All rights reserved
     </div>
-  </div>
 </div>
 </footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
 <script>

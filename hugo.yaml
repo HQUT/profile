@@ -1,4 +1,4 @@
-baseURL: "https://hugo-profile.netlify.app"
+baseURL: "/"
 languageCode: "en-us"
 title: "Hiba Qutbuddin Habib"
 theme: hugo-profile
@@ -61,7 +61,8 @@ Menus:
 params:
   title: "Hiba Qutbuddin Habib"
   description: M.Sc. in Data Science with a passion for AI, Machine Learning, and Intelligent Systems
-
+  customCSS:
+    - "css/custom.css"
 
   # staticPath: ""  # The path to serve the static files from
   favicon: "/fav.svg"

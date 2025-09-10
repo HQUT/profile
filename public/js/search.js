@@ -1,192 +1,117 @@
-(function () {
-  function isValidUrl(url) {
-    try {
-      var u = new URL(url, document.baseURI);
-      return u.protocol === "http:" || u.protocol === "https:";
-    } catch (e) { return false; }
-  }
-  function norm(s) { return (s || "").toString().toLowerCase(); }
+function encodeHTML(str) {
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+}
 
-  function buildDomIndex() {
-    var items = [];
-    function pushIf(id, title) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      items.push({ title: title, url: new URL("#" + id, document.baseURI).href, content: el.textContent || "" });
+function isValidUrl(url) {
+  try {
+    const parsedUrl = new URL(url, window.location.origin);
+    return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
+  } catch (e) {
+    return false;
+  }
+}
+
+let debounceTimeout;
+function searchOnChange(evt) {
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
+    performSearch(evt);
+  }, 300); // Debounce delay of 300ms
+}
+
+async function performSearch(evt) {
+  let searchQuery = evt.target.value.trim().toLowerCase();
+
+  if (searchQuery !== "") {
+    const searchButtonEle = document.querySelectorAll("#search");
+
+    if (searchButtonEle.length < 2) {
+      console.error("Search button elements missing!");
+      return;
     }
-    pushIf("about",      "About Me");
-    pushIf("experience", "Experience");
-    pushIf("education",  "Education");
-    pushIf("projects",   "Projects");
-    pushIf("skills",     "Skills");
-    pushIf("contact",    "Contact");
 
-    var s = document.getElementById("skills");
-    if (s) {
-      var bad = s.querySelectorAll(".badge, .level-badge");
-      if (bad.length) {
-        var txt = Array.prototype.map.call(bad, function (b) { return b.textContent; }).join(" ");
-        items.push({ title: "Skills (badges)", url: new URL("#skills", document.baseURI).href, content: txt });
-      }
-    }
-    var p = document.getElementById("projects");
-    if (p) {
-      var pbad = p.querySelectorAll(".badge");
-      if (pbad.length) {
-        var ptxt = Array.prototype.map.call(pbad, function (b) { return b.textContent; }).join(" ");
-        items.push({ title: "Projects (badges)", url: new URL("#projects", document.baseURI).href, content: ptxt });
-      }
-    }
-    return items;
-  }
-
-  function fetchHugoIndex() {
-    return new Promise(function (resolve) {
-      var url = new URL("index.json", document.baseURI).href;
-      fetch(url, { cache: "no-store" })
-        .then(function (r) { if (!r.ok) throw new Error("no index"); return r.json(); })
-        .then(function (raw) {
-          var arr = Array.isArray(raw) ? raw : (raw.pages || raw.items || raw.results || raw.data || []);
-          var out = [];
-          for (var i = 0; i < arr.length; i++) {
-            var it = arr[i];
-            if (!it || typeof it !== "object") continue;
-            var title = it.title || it.Title || "";
-            var desc  = it.description || it.Description || it.summary || it.Summary || "";
-            var body  = it.content || it.plain || it.Plain || "";
-            var link  = it.permalink || it.Permalink || it.relpermalink || it.RelPermalink || "";
-            try { link = link ? new URL(link, document.baseURI).href : ""; } catch(e){ link = ""; }
-            if (!link) continue;
-            out.push({ title: title, url: link, content: (desc + " " + body) });
-          }
-          resolve(out);
-        })
-        .catch(function () { resolve([]); });
-    });
-  }
-
-  function positionPanel() {
-    var panel = document.getElementById("search-content");
-    var inputs = document.querySelectorAll("#search");
-    if (!panel || inputs.length === 0) return;
-
-    var inputEl = (window.innerWidth > 768 && inputs[0]) ? inputs[0] : (inputs[1] || inputs[0]);
-    panel.style.width = window.innerWidth > 768 ? "500px" : "300px";
-    var rect = inputEl.getBoundingClientRect();
-    panel.style.position = "absolute";
-    panel.style.top  = (rect.top + window.scrollY + rect.height + 8) + "px";
-    panel.style.left = (rect.left + window.scrollX) + "px";
-  }
-
-  function renderResults(results, q) {
-    var panel = document.getElementById("search-content");
-    var list  = document.getElementById("search-results");
-    if (!panel || !list) return;
-
-    list.innerHTML = "";
-    if (!results.length) {
-      var p = document.createElement("p");
-      p.className = "text-center py-3";
-      p.textContent = 'No results found for "' + q + '"';
-      list.appendChild(p);
+    let searchButtonPosition;
+    if (window.innerWidth > 768) {
+      searchButtonPosition = searchButtonEle[0].getBoundingClientRect();
+      document.getElementById("search-content").style.width = "500px";
     } else {
-      for (var i = 0; i < Math.min(results.length, 12); i++) {
-        var r = results[i];
-        if (!r.url || !isValidUrl(r.url)) continue;
-
-        var card = document.createElement("div");
-        card.className = "card";
-
-        var a = document.createElement("a");
-        a.href = r.url;
-
-        var inner = document.createElement("div");
-        inner.className = "p-3";
-
-        var h5 = document.createElement("h5");
-        h5.textContent = r.title || "Untitled";
-
-        var desc = document.createElement("div");
-        var txt  = r.content || "";
-        var nq   = norm(q);
-        var ntxt = norm(txt);
-        var idx  = ntxt.indexOf(nq);
-        var snip = txt;
-        if (idx >= 0) {
-          var start = Math.max(0, idx - 40);
-          var end   = Math.min(txt.length, idx + q.length + 40);
-          snip = (start > 0 ? "…" : "") + txt.slice(start, end) + (end < txt.length ? "…" : "");
-        } else {
-          snip = txt.slice(0, 100) + (txt.length > 100 ? "…" : "");
-        }
-        desc.textContent = snip;
-
-        inner.appendChild(h5);
-        inner.appendChild(desc);
-        a.appendChild(inner);
-        card.appendChild(a);
-        list.appendChild(card);
-      }
+      searchButtonPosition = searchButtonEle[1].getBoundingClientRect();
+      document.getElementById("search-content").style.width = "300px";
     }
-    positionPanel();
-    panel.style.display = "block";
-  }
 
-  var debounce;
-  window.searchOnChange = function (evt) {
-    clearTimeout(debounce);
-    debounce = setTimeout(function () {
-      var q = (evt && evt.target && evt.target.value ? evt.target.value : "").trim();
-      var panel = document.getElementById("search-content");
-      var list  = document.getElementById("search-results");
-      if (!q) {
-        if (panel) panel.style.display = "none";
-        if (list) list.innerHTML = "";
-        return;
+    document.getElementById("search-content").style.top =
+      searchButtonPosition.top + 50 + "px";
+    document.getElementById("search-content").style.left =
+      searchButtonPosition.left + "px";
+
+    try {
+      let response = await fetch("/index.json");
+      if (!response.ok) {
+        throw new Error("Failed to fetch search data");
       }
 
-      positionPanel();
+      let searchJson = await response.json();
+      console.log("Fetched Data:", searchJson); // Debugging log
 
-      var domIndex = buildDomIndex();
-      fetchHugoIndex().then(function (hugoIndex) {
-        var all = domIndex.concat(hugoIndex);
-        var nq = norm(q);
-        var results = [];
-        for (var i = 0; i < all.length; i++) {
-          var it = all[i];
-          var hay = norm(it.title + " " + (it.content || ""));
-          if (hay.indexOf(nq) !== -1) {
-            results.push({ title: it.title, url: it.url, content: it.content || "" });
-          }
-        }
-        renderResults(results, q);
+      let searchResults = searchJson.filter((item) => {
+        if (!item || typeof item !== "object") return false;
+        if (!item.title && !item.description && !item.content) return false;
+
+        return (
+          (item.title && item.title.toLowerCase().includes(searchQuery)) ||
+          (item.description && item.description.toLowerCase().includes(searchQuery)) ||
+          (item.content && item.content.toLowerCase().includes(searchQuery))
+        );
       });
-    }, 250);
-  };
 
-  // Stäng panelen med ESC / klick utanför
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      var p = document.getElementById("search-content");
-      var r = document.getElementById("search-results");
-      if (p) p.style.display = "none";
-      if (r) r.innerHTML = "";
-    }
-  });
-  document.addEventListener("click", function (e) {
-    var panel = document.getElementById("search-content");
-    if (!panel) return;
-    var inputs = document.querySelectorAll("#search");
-    var inside = panel.contains(e.target);
-    if (!inside) {
-      for (var i = 0; i < inputs.length; i++) {
-        if (inputs[i] && inputs[i].contains(e.target)) { inside = true; break; }
+      const searchResultsContainer = document.getElementById("search-results");
+      searchResultsContainer.innerHTML = ""; // Clear previous results
+
+      if (searchResults.length > 0) {
+        searchResults.forEach((item) => {
+          if (!item.permalink || !isValidUrl(item.permalink)) {
+            console.warn("Skipping invalid search result:", item);
+            return;
+          }
+
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const link = document.createElement("a");
+          link.href = item.permalink; // Safe, since we validated it
+
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "p-3";
+
+          const title = document.createElement("h5");
+          title.textContent = item.title || "Untitled"; // Use textContent to prevent XSS
+
+          const description = document.createElement("div");
+          description.textContent = item.description || "No description available"; // Safe
+
+          contentDiv.appendChild(title);
+          contentDiv.appendChild(description);
+          link.appendChild(contentDiv);
+          card.appendChild(link);
+          searchResultsContainer.appendChild(card);
+        });
+      } else {
+        const noResultsMessage = document.createElement("p");
+        noResultsMessage.className = "text-center py-3";
+        noResultsMessage.textContent = `No results found for "${searchQuery}"`;
+        searchResultsContainer.appendChild(noResultsMessage);
       }
+
+      document.getElementById("search-content").style.display = "block";
+    } catch (error) {
+      console.error("Error fetching search data:", error);
     }
-    if (!inside) {
-      panel.style.display = "none";
-      var r = document.getElementById("search-results");
-      if (r) r.innerHTML = "";
-    }
-  });
-})();
+  } else {
+    document.getElementById("search-content").style.display = "none";
+    document.getElementById("search-results").innerHTML = "";
+  }
+}

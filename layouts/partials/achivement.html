@@ -1,0 +1,42 @@
+{{/* layouts/partials/sections/achievements.html */}}
+{{ $sec := .Site.Params.achievements }}
+{{ if and $sec ($sec.enable | default false) }}
+<section id="skills" class="py-5">
+  <div class="container">
+    <h3 class="text-center">{{ $sec.title | default "Skills" }}</h3>
+
+    <div class="row justify-content-center px-3 px-md-5 g-3">
+      {{ range $sec.items }}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 p-3">
+            <h5 class="card-title mb-2">{{ .title | safeHTML }}</h5>
+
+            {{ with .badges }}
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                {{ range . }}
+                  <span class="badge">{{ . }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
+
+            {{ with .levels }}
+              <ul class="list-unstyled mb-0">
+                {{ range . }}
+                  <li class="mb-1">
+                    <span class="fw-semibold">{{ .name }}</span>
+                    <span class="badge level-badge ms-2">{{ .level }}</span>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+
+            {{ with .content }}
+              <p class="card-text secondary-font mt-2 mb-0">{{ . | safeHTML }}</p>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

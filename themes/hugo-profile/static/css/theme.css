@@ -1,56 +1,243 @@
-/* light mode */
-.light > *{
-    background-color: var(--background-color) !important;
-    color: var(--text-color) !important;
+
+
+/* === Globala === */
+html,body{
+  background:var(--background-color);
+  color:var(--text-color);
+  padding-top:var(--navbar-height); /* reservutrymme för navbar */
+}
+::selection{
+  color:var(--primary-contrast)!important;
+  background-color:var(--primary-color)!important;
+}
+.text-secondary{color:var(--text-secondary-color)!important;}
+#footer-socialNetworks-github-svg-path{fill:none;}
+body.dark #footer-socialNetworks-github-svg-path{fill:#fff;}
+
+/* Globala länkar */
+a{ color: var(--text-link-color); }
+a:hover{ color: var(--bs-link-hover-color); }
+
+/* ===== Navbar / Topbar – auto-hide ===== */
+#profileHeader{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1030;
+  transform:translateY(-100%);
+  transition:transform .25s ease;
+  pointer-events:none;
+}
+#profileHeader.showHeaderOnTop{
+  transform:translateY(0);
+  pointer-events:auto;
+}
+#profileHeader .navbar{
+  background-color:var(--navbar-bg)!important;
+  --bs-bg-opacity:1!important;
+  border:none;                                         /* ingen linje */
+  box-shadow:0 2px 8px rgba(0,0,0,.08);                /* skugga */
+  backdrop-filter:blur(6px);
+  transition:background-color .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+#profileHeader.showHeaderOnTop .navbar{
+  box-shadow:0 6px 20px rgba(0,0,0,.15);
 }
 
-.light > #footer-socialNetworks-github-svg-path{
-    fill: none;
+/* Nav-text (brand kan vara neutral), men länkar = rosa */
+#profileHeader .navbar .navbar-brand,
+#profileHeader .navbar .navbar-text{
+  color:var(--text-color)!important;
+}
+#profileHeader .navbar .nav-link{
+  color:var(--text-link-color)!important;
+}
+#profileHeader .navbar .nav-link:hover,
+#profileHeader .navbar .nav-link:focus{
+  color:var(--bs-link-hover-color)!important;
 }
 
-/* dark mode */
-.dark {
-    --background-color: var(--background-color-dark) !important;
-    --secondary-background-color: var(--secondary-background-color-dark) !important;
-    --text-color: var(--text-color-dark) !important;
-    --text-secondary-color: var(--text-secondary-color-dark) !important;
-    --text-link-color: var(--text-link-color-dark) !important;
-    --primary-color: var(--primary-color-dark);
-    --secondary-color: var(--secondary-color-dark);
+/* Sökfält i navbaren */
+#profileHeader .navbar input.form-control{
+  background-color:var(--secondary-background-color);
+  color:var(--text-color);
+  border:1px solid var(--secondary-color);
 }
 
-.dark #footer-socialNetworks-github-svg-path{
-    fill: #FFFFFF;
+/* Theme toggle i navbaren */
+#theme-toggle{
+  background-color:var(--secondary-background-color);
+  border:1px solid var(--secondary-color);
+  border-radius:50%;
+  padding:.4rem;
+  cursor:pointer;
+  transition:background-color .2s ease,border-color .2s ease,transform .2s ease;
+}
+#theme-toggle:hover{
+  background-color:var(--primary-color);
+  border-color:var(--primary-color);
+  transform:scale(1.05);
+}
+#theme-toggle:focus{outline:0;}
+#theme-toggle svg{height:18px;width:18px;fill:var(--text-color);}
+body.dark #moon{display:none;vertical-align:middle;}
+body:not(.dark) #sun{display:none;}
+
+/* ===== Buttons (Bootstrap) ===== */
+.btn-primary{
+  background-color:var(--primary-color)!important;
+  border-color:var(--primary-color)!important;
+  color:var(--primary-contrast)!important;
+}
+.btn-primary:hover{
+  background-color:color-mix(in srgb, var(--primary-color) 85%, #000 15%)!important;
+  border-color:color-mix(in srgb, var(--primary-color) 85%, #000 15%)!important;
+}
+.btn-outline-primary{
+  color:var(--primary-color)!important;
+  border-color:var(--primary-color)!important;
+}
+.btn-outline-primary:hover{
+  background-color:var(--primary-color)!important;
+  color:var(--primary-contrast)!important;
 }
 
-.text-secondary {
-    color: var(--text-secondary-color) !important;
+/* Fokusring */
+:focus-visible{
+  outline:2px solid color-mix(in srgb, var(--primary-color) 70%, transparent);
+  outline-offset:2px;
 }
 
-#theme-toggle:focus {
-    outline: 0;
+/* ===== Skills Section ===== */
+#skills .card{
+  background:var(--card-bg);
+  border:1px solid var(--secondary-color);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  border-radius:1rem;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+  will-change:transform;
+}
+#skills .card:hover{
+  transform:translateY(-2px) scale(1.015);
+  border-color:var(--primary-color);
+  box-shadow:0 8px 24px rgba(0,0,0,.25),
+             0 0 0 1px color-mix(in srgb,var(--primary-color) 35%,transparent);
+  cursor:pointer;
 }
 
-#theme-toggle svg {
-    height: 18px;
+#skills h3,
+#skills .card-title{ color:var(--text-color); }
+#skills .card-text{ color:var(--text-secondary-color); }
+
+/* Ikoner/emoji i rubriker – rosa */
+#skills .card-title :is(i,svg){ color:var(--primary-color)!important; }
+#skills .card-title .emoji,
+#skills .card-title :is(span,strong,em):has(> .emoji){ color:var(--primary-color); }
+#skills .card:hover .card-title{
+  text-shadow:0 0 1px color-mix(in srgb,var(--primary-color) 20%,transparent);
+}
+#skills .card:hover .card-title :is(i,svg){
+  transform:scale(1.05);
+  transition:transform .22s ease;
 }
 
-button#theme-toggle {
-    border: none;
-    font-size: 26px;
-    margin: auto 4px;
+/* Badges */
+#skills .badge{
+  background-color:var(--badge-bg);
+  color:var(--badge-text);
+  border:0;
+  border-radius:.7rem;
+  padding:.42rem .72rem;
+  font-weight:600;
+  line-height:1;
+  letter-spacing:.2px;
+  display:inline-block;
+  box-shadow:0 2px 0 rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .15s ease, background-color .15s ease, color .15s ease;
+}
+#skills .badge:hover{
+  background-color:var(--primary-color)!important;
+  color:var(--primary-contrast)!important;
+  transform:translateY(-1px);
 }
 
-body.dark #moon {
-    vertical-align: middle;
-    display: none;
+/* Språk-nivåer – ljusa chip även i dark (ta bort om du vill ha mörka i dark) */
+#skills .level-badge{
+  background-color:#f3f4f6;
+  color:#111827;
+  border:0;
+  font-weight:600;
+  border-radius:.5rem;
+  padding:.25rem .5rem;
+}
+body.dark #skills .level-badge{ background-color:#e5e7eb; color:#111827; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  #skills .card,
+  #skills .card:hover,
+  #skills .card .card-title :is(i,svg){
+    transition:none; transform:none;
+  }
+}
+/* === Light mode (default) === */
+:root{
+  --background-color:#ffffff;
+  --secondary-background-color:#f9fafb;   /* sektioner/paneler */
+  --card-bg:#f3f4f6;                      /* kort-bakgrund */
+  --navbar-bg:#f9fafb;                    /* navbar i light */
+  --navbar-height:64px;
+
+  --text-color:#111827;
+  --text-secondary-color:#6b7280;
+
+  /* Rosa accent (light) */
+  --text-link-color:#ec4899;              /* pink-500 */
+  --primary-color:#ec4899;
+  --primary-contrast:#ffffff;
+
+  --secondary-color:#e5e7eb;              /* linjer/border */
+
+  --badge-bg:#e5e7eb;
+  --badge-text:#111827;
+
+  /* Bridge till Bootstrap */
+  --bs-primary: var(--primary-color);
+  --bs-link-color: var(--text-link-color);
+  --bs-link-hover-color: color-mix(in srgb, var(--text-link-color) 85%, #000 15%);
 }
 
-body:not(.dark) #sun {
-    display: none;
+/* === Dark mode: <body class="dark"> === */
+body.dark{
+  --background-color:#0b0f14;
+  --secondary-background-color:#111827;
+  --card-bg:#374151;                      /* lite ljusare än page-bakgrunden */
+  --navbar-bg:#111827;                    /* navbar i dark */
+
+  /* Rosa accent (dark) – lite ljusare för kontrast */
+  --primary-color:#f472b6;                /* pink-400 */
+  --text-link-color:#f9a8d4;              /* pink-300 */
+  --primary-contrast:#0b0f14;
+
+  --text-color:#e5e7eb;
+  --text-secondary-color:#9ca3af;
+  --secondary-color:#374151;
+
+  --badge-bg:#111827;                     /* mörk badge */
+  --badge-text:#e5e7eb;
+
+  --bs-primary: var(--primary-color);
+  --bs-link-color: var(--text-link-color);
+  --bs-link-hover-color: color-mix(in srgb, var(--text-link-color) 85%, #fff 15%);
 }
 
-body *::selection {
-    color: var(--text-color) !important;
-    background-color: var(--primary-color) !important;
+/* ---- Tvinga rosa länkar i LIGHT ---- */
+body.light header#profileHeader .navbar .nav-link,
+body.light header#profileHeader .navbar .navbar-nav a {
+  color: var(--text-link-color) !important;
+}
+body.light a {
+  color: var(--text-link-color) !important;
+}
+body.light a:hover {
+  color: color-mix(in srgb, var(--text-link-color) 85%, #000 15%) !important;
 }
