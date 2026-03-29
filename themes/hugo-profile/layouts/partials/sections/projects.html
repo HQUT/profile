@@ -1,83 +1,143 @@
 {{ if .Site.Params.projects.enable | default false }}
 <section id="projects" class="py-5">
     <div class="container">
-        <h3 class="text-center">{{ .Site.Params.projects.title | default "Projects" }}</h3>
+        <h3 class="text-center">{{ .Site.Params.projects.title | default "Key Projects" }}</h3>
+
+        {{ if .Site.Params.projects.featured }}
         <div class="row justify-content-center px-3 px-md-5">
-            {{ range .Site.Params.projects.items }}
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card my-3 h-100" title="{{ .title }}">
-                    <div class="card-head">
-                        <img class="card-img-top" src="{{ .image }}" alt="{{ .title }}">
-                    </div>
-                    <div class="card-body bg-transparent p-3">
-                        <div class="pb-2 bg-transparent">
-                            {{ range .badges }}
-                            <span class="badge badge-secondary">{{ . }}</span>
-                            {{ end }}
+            {{ range .Site.Params.projects.featured }}
+            <div class="col-12 my-1">
+                <div class="card my-2 overflow-hidden" title="{{ .title }}" style="height: auto; min-height: 0;">
+                    <div class="row g-0 align-items-start" style="height: auto;">
+                        <div class="col-md-4 d-flex align-items-start justify-content-center p-3">
+                            <img
+                                src="{{ .image }}"
+                                alt="{{ .title }}"
+                                class="img-fluid"
+                                style="max-height: 180px; max-width: 90%; object-fit: contain; background-color: #fff; border-radius: 8px; padding: 8px;"
+                            >
                         </div>
-                        <h5 class="card-title bg-transparent mt-1">{{ .title }}</h5>
-                        <div class="card-text bg-transparent secondary-font">
-                            {{ .content }}
+                        <div class="col-md-8">
+                            <div class="card-body bg-transparent p-2">
+                                <div class="pb-2 bg-transparent">
+                                    {{ range .badges }}
+                                    <span class="badge badge-secondary">{{ . }}</span>
+                                    {{ end }}
+                                </div>
+
+                                <h5 class="card-title bg-transparent mt-1 mb-2">{{ .title }}</h5>
+
+                                <div class="card-text bg-transparent secondary-font">
+                                    {{ .content }}
+                                </div>
+
+                                {{ if or (.links) (.featured) }}
+                                <div class="pt-2">
+                                    {{ range .links }}
+                                    <span class="me-3">
+                                        <a href="{{ .url }}" target="_blank">
+                                            <i class="{{ .icon }} me-1"></i>
+                                            
+                                            {{ if eq .type "code" }}
+                                                View Code
+                                            {{ else if eq .type "thesis" }}
+                                                View Thesis
+                                            {{ else if eq .type "demo" }}
+                                                Live Demo
+                                            {{ else if eq .type "report" }}
+                                                View Report
+                                            {{ else }}
+                                                View Video
+                                            {{ end }}
+
+                                        </a>
+                                    </span>
+                                    {{ end }}
+                                    {{ if .featured }}
+                                    <span class="me-3">
+                                        <a href="{{ .featured.link }}" target="_blank">
+                                            <i class="fas fa-external-link-alt me-1"></i>{{ .featured.name }}
+                                        </a>
+                                    </span>
+                                    {{ end }}
+                                </div>
+                                {{ end }}
+                            </div>
                         </div>
-                    </div>
-                    {{ if or (.links) (.featured) }}
-                    <div class="card-footer py-3">
-                        {{ range .links }}
-                        <span class="m-1 mx-2">
-                            <a href="{{ .url }}" target="_blank">
-                                <i class="{{ .icon }}"></i>
-                            </a>
-                        </span>
-                        {{ end }}
-                        {{ if .featured }}
-                        <span class="float-end">
-                            <a class="btn btn-sm" href="{{ .featured.link }}" target="_blank">
-                                {{ .featured.name }}
-                            </a>
-                        </span>
-                        {{ end }}
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
-            {{ end }}
-            {{ range ( where .Site.RegularPages "Type" "projects" ) }}
-            {{ if .Params.showInHome | default true }}
-            <div class="col-lg-4 col-md-6 my-3">
-                <div class="card my-3 h-100" title="{{ .Title }}">
-                    <div class="card-head">
-                        <img class="card-img-top" src="{{ .Params.image }}" alt="{{ .Title }}">
-                    </div>
-                    <div class="card-body bg-transparent p-3">
-                        <div class="pb-2 bg-transparent">
-                            {{ range .Params.badges }}
-                            <span class="badge badge-secondary">{{ . }}</span>
-                            {{ end }}
-                        </div>
-                        <h5 class="card-title bg-transparent">{{ .Title | truncate 50 }}</h5>
-                        <div class="card-text bg-transparent secondary-font">
-                            {{ .Summary | truncate 100 | safeHTML }}
-                        </div>
-                    </div>
-                    <div class="card-footer py-3">
-                        {{ range .Params.links }}
-                        <span class="m-1 mx-2">
-                            <a href="{{ .url }}">
-                                <i class="{{ .icon }}"></i>
-                            </a>
-                        </span>
-                        {{ end }}
-                        <span class="float-end">
-                            <a class="btn btn-sm" href="{{ .RelPermalink }}">
-                                Know more
-                            </a>
-                        </span>
                     </div>
                 </div>
             </div>
-            {{ end }}
             {{ end }}
         </div>
+        {{ end }}
+
+        {{ if .Site.Params.projects.other }}
+        <h4 class="mt-5 mb-3 text-center">Other Projects</h4>
+        <div class="row justify-content-center px-3 px-md-5" style="max-height: 450px; overflow-y: auto;">            {{ range .Site.Params.projects.other }}
+            <div class="col-12 my-1">
+                <div class="card my-2 overflow-hidden" title="{{ .title }}" style="height: auto; min-height: 0;">                    
+                    <div class="row g-0 align-items-start" style="height: auto;">
+                        <div class="col-md-4 d-flex align-items-start justify-content-center p-3">
+                            <img
+                                src="{{ .image }}"
+                                alt="{{ .title }}"
+                                class="img-fluid"
+                                style="max-height: 180px; max-width: 90%; object-fit: contain; background-color: #fff; border-radius: 8px; padding: 8px;"
+                            >
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body bg-transparent p-2">
+                                <div class="pb-2 bg-transparent">
+                                    {{ range .badges }}
+                                    <span class="badge badge-secondary">{{ . }}</span>
+                                    {{ end }}
+                                </div>
+
+                                <h5 class="card-title bg-transparent mt-1 mb-2">{{ .title }}</h5>
+
+                                <div class="card-text bg-transparent secondary-font">
+                                    {{ .content }}
+                                </div>
+
+                                {{ if or (.links) (.featured) }}
+                                <div class="pt-2">
+                                    {{ range .links }}
+                                    <span class="me-3">
+                                        <a href="{{ .url }}" target="_blank">
+                                            <i class="{{ .icon }} me-1"></i>
+                                            {{ if eq .type "code" }}
+                                                View Code 
+                                            {{ else if eq .type "thesis" }}
+                                                View Thesis
+                                            {{ else if eq .type "demo" }}
+                                                Live Demo
+                                            {{ else if eq .type "report" }}
+                                                View Report
+                                            {{ else }}
+                                                View Video
+                                            {{ end }}
+
+                                        </a>
+                                    </span>
+                                    {{ end }}
+                                    {{ if .featured }}
+                                    <span class="me-3">
+                                        <a href="{{ .featured.link }}" target="_blank">
+                                            <i class="fas fa-external-link-alt me-1"></i>{{ .featured.name }}
+                                        </a>
+                                    </span>
+                                    {{ end }}
+                                </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+
     </div>
 </section>
 {{ end }}
